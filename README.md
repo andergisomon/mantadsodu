@@ -1,2 +1,3 @@
 # mantadsodu
-Gipop mobile SCADA app, built with Flutter
+
+Remote SCADA mobile client app for Gipop.
