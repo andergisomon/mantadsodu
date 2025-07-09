@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mantadsodu/services/sb_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AdmiralScreen extends StatefulWidget {
@@ -9,8 +10,39 @@ class AdmiralScreen extends StatefulWidget {
 }
 
 class _AdmiralScreenState extends State<AdmiralScreen> {
-  bool area1LightsOn = false;
+  bool area2LightsOn = false;
   String ragLightsStatus = 'OFF';
+
+  @override
+  void initState() {
+    super.initState();
+    _sendCmds();
+  }
+
+  var area_2_lights_on = 0;
+  var rag = 0;
+
+  void _sendCmds() {
+    if (area2LightsOn) {
+      area_2_lights_on = 1;
+    }
+    else {
+      area_2_lights_on = 0;
+    }
+
+    switch (ragLightsStatus) {
+      case 'OFF':
+        rag = 0;
+      case 'RED':
+        rag = 1;
+      case 'AMBER':
+        rag = 2;
+      case 'GREEN':
+        rag = 3;
+    }
+
+    insertRemoteCmd(rag, area_2_lights_on);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +85,14 @@ class _AdmiralScreenState extends State<AdmiralScreen> {
                               child: GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    area1LightsOn = true;
+                                    area2LightsOn = true;
                                   });
+                                  _sendCmds();
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(vertical: 12),
                                   decoration: BoxDecoration(
-                                    color: area1LightsOn ? const Color.fromARGB(255, 54, 166, 60) : Colors.grey[600],
+                                    color: area2LightsOn ? const Color.fromARGB(255, 54, 166, 60) : Colors.grey[600],
                                     borderRadius: const BorderRadius.only(
                                       topLeft: Radius.circular(8),
                                       bottomLeft: Radius.circular(8),
@@ -80,13 +113,14 @@ class _AdmiralScreenState extends State<AdmiralScreen> {
                               child: GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    area1LightsOn = false;
+                                    area2LightsOn = false;
                                   });
+                                  _sendCmds();
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(vertical: 12),
                                   decoration: BoxDecoration(
-                                    color: !area1LightsOn ? Colors.black : Colors.grey[600],
+                                    color: !area2LightsOn ? Colors.black : Colors.grey[600],
                                     borderRadius: const BorderRadius.only(
                                       topRight: Radius.circular(8),
                                       bottomRight: Radius.circular(8),
@@ -177,6 +211,7 @@ class _AdmiralScreenState extends State<AdmiralScreen> {
                                   setState(() {
                                     ragLightsStatus = 'RED';
                                   });
+                                  _sendCmds();
                                 },
                                 child: Container(
                                   width: double.infinity,
@@ -203,6 +238,7 @@ class _AdmiralScreenState extends State<AdmiralScreen> {
                                   setState(() {
                                     ragLightsStatus = 'AMBER';
                                   });
+                                  _sendCmds();
                                 },
                                 child: Container(
                                   width: double.infinity,
@@ -225,6 +261,7 @@ class _AdmiralScreenState extends State<AdmiralScreen> {
                                   setState(() {
                                     ragLightsStatus = 'GREEN';
                                   });
+                                  _sendCmds();
                                 },
                                 child: Container(
                                   width: double.infinity,
@@ -248,6 +285,7 @@ class _AdmiralScreenState extends State<AdmiralScreen> {
                                   setState(() {
                                     ragLightsStatus = 'OFF';
                                   });
+                                  _sendCmds();
                                 },
                                 child: Container(
                                   width: double.infinity,
