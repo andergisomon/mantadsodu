@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mantadsodu/screens/home.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'screens/dashboard.dart';
+// import 'screens/dashboard.dart';
 
 Future main() async {
     await dotenv.load(fileName: ".env");
@@ -19,7 +20,7 @@ class MainApp extends StatelessWidget {
     Widget build(BuildContext context) {
     return const MaterialApp(
         title: 'Mantadsodu',
-        home: Dashboard(),
+        home: HomeScreen(),
     );
     }
 }
