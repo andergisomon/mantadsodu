@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mantadsodu/screens/admiral.dart';
+import 'package:mantadsodu/screens/disclaimer.dart';
 import 'package:mantadsodu/screens/tag_view.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                 GestureDetector(      
                   onTap: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => const AdmiralScreen()),
+                      MaterialPageRoute(builder: (context) => const DisclaimerScreen()),
                     );
                   },
                   child:

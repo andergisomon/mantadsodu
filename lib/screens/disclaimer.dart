@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mantadsodu/screens/admiral.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DisclaimerScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class DisclaimerScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFEA3A3A), Color(0xFFD32F2F)],
+            colors: [Color.fromARGB(255, 233, 87, 87), Color(0xFFD32F2F), Color.fromARGB(255, 106, 23, 23)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -58,11 +59,13 @@ class DisclaimerScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Spacer(flex: 3),
+                const Spacer(flex: 1),
                 // "I understand" Button
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: handle confirmation
+                      Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const AdmiralScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFFD740), // yellow
@@ -87,7 +90,7 @@ class DisclaimerScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 227),
               ],
             ),
           ),
