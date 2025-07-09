@@ -63,7 +63,7 @@ class DisclaimerScreen extends StatelessWidget {
                 // "I understand" Button
                 ElevatedButton(
                   onPressed: () {
-                      Navigator.of(context).push(
+                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(builder: (context) => const AdmiralScreen()),
                     );
                   },

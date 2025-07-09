@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                   child:
                     _buildGradientButton(
                     title: 'View tags',
-                    subtitle: 'Monitor tags reported by PLC, updated live.',
+                    subtitle: 'Fetch from the database the latest tag records reported by the PLC.',
                     gradientColors: [Color(0xFF9B4DCC), Color(0xFFD17DD4)],
                   )
                 ),
