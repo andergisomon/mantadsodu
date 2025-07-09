@@ -1,76 +1,100 @@
 import 'package:flutter/material.dart';
+import 'package:mantadsodu/services/sb_service.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TagView extends StatelessWidget {
+class TagView extends StatefulWidget {
   const TagView({Key? key}) : super(key: key);
 
-  // Data structure to feed UI builder
-  final List<Map<String, dynamic>> tagData = const [
-    {
-      'created_at': '2025-06-19 08:47:50.462048+00',
-      'temperature': 23.58846206665,
-      'humidity': 52.1568908691406,
-      'area_1_lights': 0,
-      'area_2_lights': 0,
-      'status': 0,
-      'area_1_lights_hmi_cmd': 0,
-    },
-    {
-      'created_at': '2025-06-19 06:23:44.783316+00',
-      'temperature': 23.6133995056152,
-      'humidity': 52.4412078857422,
-      'area_1_lights': 1,
-      'area_2_lights': 0,
-      'status': 0,
-      'area_1_lights_hmi_cmd': 1,
-    },
-        {
-      'created_at': '2025-06-19 06:23:44.783316+00',
-      'temperature': 23.6133995056152,
-      'humidity': 52.4412078857422,
-      'area_1_lights': 1,
-      'area_2_lights': 0,
-      'status': 0,
-      'area_1_lights_hmi_cmd': 1,
-    },
-        {
-      'created_at': '2025-06-19 08:47:50.462048+00',
-      'temperature': 23.58846206665,
-      'humidity': 52.1568908691406,
-      'area_1_lights': 0,
-      'area_2_lights': 0,
-      'status': 0,
-      'area_1_lights_hmi_cmd': 0,
-    },
-    // You can add more entries here
-  ];
+  @override
+  State<TagView> createState() => _TagViewState();
+}
+
+class _TagViewState extends State<TagView> {
+  List<Map<String, dynamic>> tagData = [];
+  bool _isLoading = true;
+  String? _errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchTags();
+  }
+
+  Future<void> _fetchTags() async {
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+
+    try {
+      final fetchedTags = await fetchPlcTags();
+      setState(() {
+        tagData = fetchedTags;
+      });
+    }
+    catch (e) {
+      setState(() {
+        _errorMessage = e.toString();
+      });
+    }
+    finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Tag view',
+          style: GoogleFonts.workSans(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.purple[100],
+        actions: [
+          Row(children:
+          [  
+          TextButton.icon(
+            onPressed: _isLoading ? null : _fetchTags,
+            icon: const Icon(Icons.refresh, size: 24.0),
+            label:
+              Text(
+                "Refresh",
+                style:
+                  GoogleFonts.workSans(
+                    textStyle:
+                      TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500
+                      ),
+                  ),
+              ),
+          )
+            ,
+            SizedBox(width: 16.0,)
+          ],)
+        ],
+      ),
       body: SafeArea(
         top: false,
         child: Padding(
-          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 32.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 0.0),
           child: Column(
             children: [
-              const SizedBox(height: 20),
-              Text(
-                'Tag view',
-                style: GoogleFonts.workSans(
-                  textStyle: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
               Expanded(
                 child: ListView.builder(
                   itemCount: tagData.length,
                   itemBuilder: (context, index) {
                     final data = tagData[index];
                     return Container(
-                      margin: const EdgeInsets.only(bottom: 16.0, left: 8.0, right: 8.0),
+                      margin: const EdgeInsets.only(top: 32.0, bottom: 0.0, left: 8.0, right: 8.0),
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: Colors.grey[700],

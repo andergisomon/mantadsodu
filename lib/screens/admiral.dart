@@ -22,10 +22,10 @@ class _AdmiralScreenState extends State<AdmiralScreen> {
           style: GoogleFonts.workSans(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
-        backgroundColor: Colors.grey[600],
+        backgroundColor: Colors.amber[200],
         elevation: 0,
       ),
       backgroundColor: Colors.grey[100],

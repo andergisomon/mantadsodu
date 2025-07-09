@@ -9,7 +9,6 @@ Future main() async {
     final String url = dotenv.env['SUPABASE_URL']!;
     final String key = dotenv.env['SUPABASE_KEY']!;
     await Supabase.initialize(url: url, anonKey: key, debug: true);
-
     runApp(const MainApp());
 }
 
