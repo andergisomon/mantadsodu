@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mantadsodu/screens/disclaimer.dart';
 import 'package:mantadsodu/screens/tag_view.dart';
+import 'package:mantadsodu/screens/chart_view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -95,12 +96,19 @@ class HomeScreen extends StatelessWidget {
                     gradientColors: [Color(0xFF9B4DCC), Color(0xFFD17DD4)],
                   )
                 ),
-                _buildGradientButton( // TODO
-                  title: 'Chart view',
-                  subtitle: 'Visualize tag values over time.',
-                  gradientColors: [Color(0xFF7CC041), Color(0xFF8FDA52)],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const ChartView()),
+                    );
+                  },
+                  child:
+                    _buildGradientButton(
+                      title: 'Chart view',
+                      subtitle: 'Visualize tag values over time.',
+                      gradientColors: [Color(0xFF7CC041), Color(0xFF8FDA52)],
+                    )
                 ),
-                
                 GestureDetector(      
                   onTap: () {
                     Navigator.of(context).push(
