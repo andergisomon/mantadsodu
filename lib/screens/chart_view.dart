@@ -5,9 +5,6 @@ import 'package:mantadsodu/services/sb_service.dart';
 
 class ChartDataProcessor {
   static List<LineChartBarData> processTagData(List<Map<String, dynamic>> tagData) {
-    // if (tagData.isEmpty) {
-    //   throw Exception("Empty tagData returned to processTagData!");
-    // }
 
     tagData.sort((a, b) {
       DateTime dateTimeA = DateTime.parse(a['created_at']);
@@ -26,14 +23,9 @@ class ChartDataProcessor {
         final String createdAtString = data['created_at'];
         final double? temperature = data['temperature']?.toDouble();
         final double? humidity = data['humidity']?.toDouble();
-
-        // Parse the timestamp string into a DateTime object
         final DateTime dateTime = DateTime.parse(createdAtString);
-
-        // Convert DateTime to millisecondsSinceEpoch for the X-axis
         final double xValue = dateTime.millisecondsSinceEpoch.toDouble();
 
-        // Update min/max X values
         if (xValue < minX) minX = xValue;
         if (xValue > maxX) maxX = xValue;
 
@@ -49,7 +41,7 @@ class ChartDataProcessor {
     }
 
     return [
-            LineChartBarData(
+        LineChartBarData(
         spots: humiditySpots,
         isCurved: true,
         gradient: LinearGradient(colors: [Color(0xFF7CC041), Color(0xFF8FDA52)]),
@@ -66,14 +58,13 @@ class ChartDataProcessor {
                                       Color(0xFF7CC041).withValues(alpha: 0.4),
                                       Color(0xFF8FDA52).withValues(alpha: 0.15)
                                     ]
-                        )
-                    ),
-      ),
+                                )
+                        ),
+        ),
       LineChartBarData(
         spots: temperatureSpots,
         isCurved: true,
         gradient: LinearGradient(colors: [Color(0xFF9B4DCC), Color(0xFFD17DD4)]),
-        // color: Colors.red,
         barWidth: 10.0,
         dotData: const FlDotData(show: false),
         belowBarData: BarAreaData(
@@ -86,16 +77,14 @@ class ChartDataProcessor {
                                     Color(0xFFD17DD4).withValues(alpha: 0.15)
                                     ]
                                 )
-                  ),
+                      ),
       ),
     ];
   }
-
 }
 
 class ChartView extends StatefulWidget {
   const ChartView({Key? key}) : super(key: key);
-
   @override
   State<ChartView> createState() => _ChartViewState();
 }
@@ -158,7 +147,7 @@ class _ChartViewState extends State<ChartView> {
     maxY += yAxisPadding;
 
   if (!_isLoading) {
-      return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text(
           'Chart view',
@@ -172,20 +161,18 @@ class _ChartViewState extends State<ChartView> {
 
       ),
 
-      body:
-      
-      SingleChildScrollView(
+      body: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: 
         Container(
           padding: EdgeInsets.only(bottom: 200.0, top: 128.0, left: 64.0, right: 128.0),
           width: 1000,
           height: 1500,
-        child: 
-          Column(
-            children: [
-              Expanded(
-                child: 
+          child: 
+            Column(
+              children: [
+               Expanded(
+                 child: 
                     LineChart(
                       LineChartData(
                         lineTouchData: LineTouchData(
@@ -272,9 +259,8 @@ class _ChartViewState extends State<ChartView> {
         ),
       ),
     );
-
   }
-    else {
+  else {
     return Scaffold(
         appBar: AppBar(
         title: Text(
@@ -286,7 +272,6 @@ class _ChartViewState extends State<ChartView> {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 173, 237, 121),
-
       ),
       body: SafeArea(child: 
                 Center(
@@ -299,10 +284,8 @@ class _ChartViewState extends State<ChartView> {
                 ),
               ),
             )
-      ),
-    );
-    
+        ),
+      );
+    }
   }
-}
-
 }
