@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   flutter_dotenv: ^5.2.1
   google_fonts: ^6.2.1
+  icons_launcher: ^3.0.1
   supabase: ^2.8.0
   supabase_flutter: ^2.9.1
 
@@ -26,3 +27,11 @@ flutter:
     - .env
     - assets/panawai.png
     - assets/naau_ragangsiloutomou.png
+
+icons_launcher:
+  image_path: "assets/icon_wagu.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: false

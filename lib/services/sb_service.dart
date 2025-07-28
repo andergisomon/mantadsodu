@@ -8,7 +8,7 @@ Future<List<Map<String, dynamic>>> fetchPlcTags() async {
                   .from("plc_tags")
                   .select("*")
                   .order("id", ascending: false);
-    return res;
+    return res.sublist(0, 128);
   }
   catch (e) {
     throw Exception("caught exception $e \nfailed to fetch tags from plc_tags table");
