@@ -157,6 +157,14 @@ class _TagViewState extends State<TagView> {
                   },
                 ),
               ),
+              Container(
+                width: 50,
+                child:
+                  Row(children: [
+                    
+                  ],)
+              ),
+
             ],
           ),
         ),

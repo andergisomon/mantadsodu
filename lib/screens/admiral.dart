@@ -142,7 +142,7 @@ class _AdmiralScreenState extends State<AdmiralScreen> {
                         const SizedBox(height: 16),
                         // Label
                         Text(
-                          'area_1_lights',
+                          'area_2_lights',
                           style: GoogleFonts.workSans(
                             color: Colors.blueGrey,
                             fontSize: 16,
