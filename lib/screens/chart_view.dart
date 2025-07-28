@@ -160,6 +160,30 @@ class _ChartViewState extends State<ChartView> {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 173, 237, 121),
+        actions: [
+          Row(children:
+          [  
+          TextButton.icon(
+            onPressed: _isLoading ? null : _fetchTags,
+            icon: const Icon(Icons.refresh, size: 24.0),
+            label:
+              Text(
+                "Refresh",
+                style:
+                  GoogleFonts.workSans(
+                    textStyle:
+                      TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500
+                      ),
+                  ),
+              ),
+          )
+            ,
+            SizedBox(width: 16.0,)
+          ],)          
+        ],
 
       ),
       backgroundColor: Colors.grey[100],
@@ -352,6 +376,30 @@ class _ChartViewState extends State<ChartView> {
           ),
         ),
         backgroundColor: Color.fromARGB(255, 173, 237, 121),
+                actions: [
+          Row(children:
+          [  
+          TextButton.icon(
+            onPressed: _isLoading ? null : _fetchTags,
+            icon: const Icon(Icons.refresh, size: 24.0),
+            label:
+              Text(
+                "Refresh",
+                style:
+                  GoogleFonts.workSans(
+                    textStyle:
+                      TextStyle(
+                        color: Colors.grey[800],
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500
+                      ),
+                  ),
+              ),
+          )
+            ,
+            SizedBox(width: 16.0,)
+          ],)          
+        ],
       ),
       body: SafeArea(child: 
                 Center(
